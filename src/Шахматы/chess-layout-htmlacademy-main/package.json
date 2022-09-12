@@ -1,0 +1,23 @@
+{
+  "name": "chess-layout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionskape/chess-layout-htmlacademy.git"
+  },
+  "author": "Vladimir Ulyanov",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/lionskape/chess-layout-htmlacademy/issues"
+  },
+  "homepage": "https://github.com/lionskape/chess-layout-htmlacademy",
+  "devDependencies": {
+    "stylelint": "^13.13.1",
+    "stylelint-config-htmlacademy": "^0.1.12"
+  }
+}
