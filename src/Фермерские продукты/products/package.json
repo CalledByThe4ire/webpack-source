@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack server --mode development",
+    "start": "webpack serve",
     "eslint": "eslint --ext .jsx --ext .js ./src/",
     "svgr": "svgr --ext=jsx -d ../catcafe2/catcafe/src/components/icons/ src/assets/icons/svg/",
     "csslint": "stylelint './src/**/*.(js|jsx)'"
