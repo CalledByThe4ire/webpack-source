@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FontminPlugin = require('fontmin-webpack');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -22,6 +23,10 @@ const config = {
       template: 'index.html',
     }),
   ],
+  optimization: {
+    concatenateModules: true,
+    runtimeChunk: 'single',
+  },
   module: {
     rules: [
       {
@@ -40,14 +45,24 @@ const config = {
         test: /\.(png|jpe?g|gif|svg|webp|ico|avif|mp3)$/i,
         type: 'asset',
         generator: {
-          filename: 'assets/img/[name][hash][ext][query]',
+          filename: 'assets/img/[name].[hash].[ext]',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
         },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset',
         generator: {
-          filename: 'assets/fonts/[name][hash][ext][query]',
+          filename: 'assets/fonts/[name].[hash].[ext]',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
         },
       },
     ],
@@ -61,6 +76,12 @@ module.exports = () => {
     config.plugins.push(
       new MiniCssExtractPlugin({
         filename: 'styles/[name][hash].css',
+      }),
+      new FontminPlugin({
+        autodetect: true,
+        glyphs: ['\uf0c8'],
+        allowedFilesRegex: null,
+        skippedFilesRegex: null,
       }),
     );
   } else {

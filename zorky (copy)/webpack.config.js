@@ -43,16 +43,10 @@ const config = {
       {
         test: /\.(png|jpe?g|gif|svg|webp|ico|avif|mp3)$/i,
         type: 'asset',
-        generator: {
-          filename: 'assets/img/[name][hash][ext][query]',
-        },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset',
-        generator: {
-          filename: 'assets/fonts/[name][hash][ext][query]',
-        },
       },
     ],
   },
@@ -62,12 +56,7 @@ module.exports = () => {
   if (isProduction) {
     config.mode = 'production'
 
-    config.plugins.push(
-      new MiniCssExtractPlugin({
-        filename: 'css/[name]_[contenthash:8].css',
-      }),
-      new CssMinimizerWebpackPlugin(),
-    )
+    config.plugins.push(new MiniCssExtractPlugin(), new CssMinimizerWebpackPlugin())
   } else {
     config.mode = 'development'
   }
