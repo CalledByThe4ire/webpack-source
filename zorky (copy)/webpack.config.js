@@ -11,6 +11,7 @@ const config = {
   entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    filename: 'scripts/[name].[contenthash].js',
     clean: true,
   },
   devServer: {
@@ -30,6 +31,26 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.css'],
   },
+  optimization: {
+    splitChunks: {
+      minSize: 5000,
+      cacheGroups: {
+        reactVendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+          name: 'reactVendor',
+          chunks: 'all',
+          priority: 1,
+        },
+        defaultVendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'defaultVendor',
+          chunks: 'all',
+          minChunks: 1,
+          priority: 0,
+        },
+      },
+    },
+  },
   module: {
     rules: [
       {
@@ -43,10 +64,16 @@ const config = {
       {
         test: /\.(png|jpe?g|gif|svg|webp|ico|avif|mp3)$/i,
         type: 'asset',
+        generator: {
+          filename: 'img/[name][hash][ext][query]',
+        },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset',
+        generator: {
+          filename: 'font/[name][hash][ext][query]',
+        },
       },
     ],
   },
@@ -56,7 +83,12 @@ module.exports = () => {
   if (isProduction) {
     config.mode = 'production'
 
-    config.plugins.push(new MiniCssExtractPlugin(), new CssMinimizerWebpackPlugin())
+    config.plugins.push(
+      new MiniCssExtractPlugin({
+        filename: 'styles/[name][hash].css',
+      }),
+      new CssMinimizerWebpackPlugin(),
+    )
   } else {
     config.mode = 'development'
   }
