@@ -1,9 +1,9 @@
-@font-face {
-	font-family: 'Hack';
-	src: url('./assets//Hack Bold Nerd Font Complete.ttf');
-}
-
 $c-drak-storke: rgba(184, 225, 236, 0.901);
+
+@font-face {
+	font-family: 'HackNerdFont';
+	src: url('./assets//hack.ttf') format('truetype');
+}
 
 button {
 	font-size: 16px;
