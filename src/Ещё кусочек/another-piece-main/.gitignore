@@ -1,7 +1,0 @@
-.DS_store
-node_modules
-.idea
-dist
-/*.exe.stackdump
-idea
-.vscode

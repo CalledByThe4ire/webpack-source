@@ -1,4 +1,0 @@
-dev/static/js/vendor/**/*.js
-dev/static/js/vendor/**/*.min.js
-dev/static/js/files/*.js
-dev/ui-kit/**/*.js
