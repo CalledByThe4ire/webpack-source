@@ -8,6 +8,11 @@
     "dev": "npx webpack --mode development --config webpack.config.js",
     "start": "npx webpack serve --mode development"
   },
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

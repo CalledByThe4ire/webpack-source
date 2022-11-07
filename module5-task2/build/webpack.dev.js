@@ -3,12 +3,9 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   devServer: {
-    static: {
-      directory: path.join(__dirname, '../dist'),
-    },
-    open: true,
+    open: ['/pages/index/index.html'],
     compress: true,
-    port: 4321,
+    port: 3001,
     hot: false,
   },
 };
