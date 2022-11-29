@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const fileName = ['index', 'two', 'three', 'four', 'five'];
 
@@ -48,20 +46,7 @@ module.exports = {
           },
         }),
     ),
-    [
-      new ForkTsCheckerWebpackPlugin({
-        async: false,
-        typescript: {
-          configFile: '../tsconfig.json',
-        },
-        devServer: true,
-      }),
-      new ESLintPlugin({
-        extensions: ['.ts', '.js'],
-        failOnError: false,
-        exclude: 'node_modules',
-      }),
-    ].filter(Boolean),
+    [].filter(Boolean),
   ),
   module: {
     rules: [
@@ -75,27 +60,7 @@ module.exports = {
       },
       {
         test: /\.(ts?|js?)$/,
-        use: [
-          {
-            loader: 'thread-loader',
-            options: {
-              workerParallelJobs: 2,
-              cacheGroups: {
-                default: {
-                  reuseExistingChunk: true,
-                  chunks: 'all',
-                  priority: -20,
-                  name: 'default',
-                  test: /\.(ts|js)$/,
-                  enforce: true,
-                  minSize: 0,
-                  minChunks: 2,
-                },
-              },
-            },
-          },
-          'babel-loader',
-        ],
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
       {

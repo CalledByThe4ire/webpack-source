@@ -15,16 +15,16 @@ for (const placeholder of placeholders) {
 dragdrop.addEventListener('dragstart', dragstart);
 dragdrop.addEventListener('dragend', dragend);
 
-function dragstart(evt) {
+const dragstart = (evt) => {
   evt.target.classList.add('hold');
   setTimeout(() => {
     evt.target.classList.add('hide');
   }, 0);
-}
+};
 
-function dragend(evt) {
+const dragend = (evt) => {
   evt.target.className = 'item';
-}
+};
 
 function dragover(evt) {
   evt.preventDefault();

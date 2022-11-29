@@ -42,8 +42,6 @@ function removeColor(evt) {
   elem.style.boxShadow = '0 0 2px #000';
 }
 
-function randomColor() {
+const randomColor = () => {
   return colors[Math.floor(Math.random() * colors.length)];
-  // const index = Math.floor(Math.random() * colors.length)
-  // return colors[index]
-}
+};

@@ -1,7 +1,5 @@
 import './three.scss';
 
-console.log('Hello page #3');
-
 const start = document.querySelector('.start');
 const screen = document.querySelectorAll('.screen');
 const timeList = document.querySelector('.time-list');
@@ -44,46 +42,39 @@ timeList.addEventListener('click', (evt) => {
 board.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('circle')) {
     score++;
-    // @ts-ignore
     evt.target.remove();
     createRandom();
   }
 });
 
-function startGame() {
+const startGame = () => {
   setInterval(decTime, 1000);
   createRandom();
   setTime(times);
-}
+};
 
-function decTime() {
+const decTime = () => {
   if (times === 0) {
     endGame();
   } else {
     let current = --times;
 
     if (current < 10) {
-      // @ts-ignore
       current = `0${current}`;
     }
 
     setTime(current);
   }
-}
+};
 
-/**
- * @param {number} value
- */
-function setTime(value) {
-  time.innerHTML = `00:${value}`;
-}
+const setTime = (value) => (time.innerHTML = `00:${value}`);
 
-function endGame() {
+const endGame = () => {
   time.parentNode.classList.add('hide');
   board.innerHTML = `<h1>Score: <span class="primary">${score}</span></h1>`;
-}
+};
 
-function createRandom() {
+const createRandom = () => {
   const circle = document.createElement('div');
   const size = randomNum(10, 35);
   const {width, height} = board.getBoundingClientRect();
@@ -97,16 +88,10 @@ function createRandom() {
   circle.style.top = `${y}px`;
   circle.style.left = `${x}px`;
   board.append(circle);
-}
+};
 
-/**
- * @param {number} min
- * @param {number} max
- */
-function randomNum(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
+const randomNum = (min, max) => Math.round(Math.random() * (max - min) + min);
 
-function randomColor() {
-  return colors[Math.floor(Math.random() * colors.length)];
-}
+const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+
+console.log('Третья страница приложения');
