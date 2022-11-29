@@ -4,9 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const fileName = ['index', 'two', 'three', 'four', 'five'];
 
-const isProd = process.env.NODE_ENV === 'production';
-const styleHandler = isProd ? MiniCssExtractPlugin.loader : 'style-loader';
-
 module.exports = {
   context: path.resolve(__dirname, '../src'),
   entry: fileName.reduce((config = {}, file) => {
@@ -56,7 +53,7 @@ module.exports = {
       },
       {
         test: /\.(s[ac]|c)ss$/i,
-        use: [styleHandler, 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
         test: /\.(ts?|js?)$/,
